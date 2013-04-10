@@ -1,0 +1,44 @@
+
+support cocos2d-x v2.1,i will keeping update.
+---------------------------------------------------------------
+Contact Me:
+email:mecoolshow@gmail.com
+Facebook:http://facebook.com/lwxshow
+twitter:http://twitter.com/auaus
+blog: http://lwxshow.com/
+weibo:http://weibo.com/lwxshow
+tecent:http://t.qq.com/lwxshow
+msn:mecoolshow@hotmail.com
+--------------------------------------------------------------
+article:http://lwxshow.com/?p=2960
+cocos2d version:https://github.com/sneakyness/SneakyInput
+cocos2d-x old version:https://github.com/Ntran013/SneakyInput
+-----------------------------------------------------------------
+update list:
+
+ 1.reaplce ccTime to CCTime in the all file.
+ 2.replace LAYER_NODE_FUNC to CREATE_FUNC in the SneakyJoystickSkinnedBase.h and SneakyButtonSkinnedBase.h file.
+
+
+
+3.Replace ccTouchBegan(), ccTouchMoved() method method code,in the SneakyButton.cpp and  SneakyJoystick.cpp 
+
+old code:
+
+CCPoint location = CCDirector::sharedDirector()->convertToGL(touch->locationInView(touch->view()));
+
+replace new code:
+
+    CCPoint location = CCDirector::sharedDirector()->convertToGL(touch->getLocationInView());
+    
+4.Replace onEnterTransitionDidFinish() and  onExit() method code,in the SneakyButton.cpp and  SneakyJoystick.cpp 
+
+old code:
+
+CCTouchDispatcher::sharedDispatcher()
+
+replace new code:
+
+CCDirector::sharedDirector()->getTouchDispatcher()
+
+5.update setIsVisible to setVisible in the all method
