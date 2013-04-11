@@ -11,7 +11,7 @@ class SneakyJoystickSkinnedBase : public cocos2d::CCLayer
 	CC_SYNTHESIZE_READONLY(SneakyJoystick *, joystick, Joystick);	
 
 	//Public methods
-	CREATE_FUNC(SneakyJoystickSkinnedBase);
+	NODE_FUNC(SneakyJoystickSkinnedBase);
 	virtual ~SneakyJoystickSkinnedBase();
 	bool init();
 	void updatePositions(cocos2d::CCTime delta);
