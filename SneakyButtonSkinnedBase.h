@@ -13,7 +13,7 @@ class SneakyButtonSkinnedBase : public cocos2d::CCLayer
 	CC_SYNTHESIZE_READONLY(SneakyButton *, button, Button); //Not sure about this
 
 	//Public methods
-	NODE_FUNC(SneakyButtonSkinnedBase);
+	CREATE_FUNC(SneakyButtonSkinnedBase);
 	virtual ~SneakyButtonSkinnedBase();
 	bool init();
 	void watchSelf(cocos2d::CCTime delta);

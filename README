@@ -17,16 +17,7 @@ cocos2d version:https://github.com/sneakyness/SneakyInput
 cocos2d-x old version:https://github.com/Ntran013/SneakyInput
 -----------------------------------------------------------------
 update list:
-2013-04-11 am
-1.replace LAYER_NOE_FUNC T0 NODE_FUNC
-2.add SneakyInputEX class
-common method:
-//initialization joystick method 初始化操纵杆方法
-    static SneakyJoystickSkinnedBase *joystickSkinnedBase(CCRect padRect, const char *backgroundSprite, const char *thumbSprite);
-    //initialization button method 初始化按钮方法
-    static SneakyButtonSkinnedBase * buttonSkinnedBase(CCRect btnRect, const char *defaultSprite, const char *activeSprite);
 
-2013-04-10
  1.reaplce ccTime to CCTime in the all file.
  2.replace LAYER_NODE_FUNC to CREATE_FUNC in the SneakyJoystickSkinnedBase.h and SneakyButtonSkinnedBase.h file.
 
