@@ -42,6 +42,7 @@ void SneakyJoystick::onEnterTransitionDidFinish()
 	_listener->onTouchMoved = [&](Touch *touch, Event *event) {ccTouchMoved(touch, event);};
 	_listener->onTouchEnded = [&](Touch *touch, Event *event) {ccTouchEnded(touch, event);};
 	_listener->onTouchCancelled = [&](Touch *touch, Event *event) {ccTouchCancelled(touch, event);};
+	EventDispatcher::getInstance()->addEventListenerWithSceneGraphPriority(_listener, this);
 }
 
 void SneakyJoystick::onExit()
