@@ -15,9 +15,9 @@ class SneakyButtonSkinnedBase;
 class SneakyInputEx{
 public:
     //initialization joystick method 初始化操纵杆方法
-    static SneakyJoystickSkinnedBase *joystickSkinnedBase(CCRect padRect, const char *backgroundSprite, const char *thumbSprite);
+    static SneakyJoystickSkinnedBase *joystickSkinnedBase(Rect padRect, const char *backgroundSprite, const char *thumbSprite);
     //initialization button method 初始化按钮方法
-    static SneakyButtonSkinnedBase * buttonSkinnedBase(CCRect btnRect, const char *defaultSprite, const char *activeSprite);
+    static SneakyButtonSkinnedBase * buttonSkinnedBase(Rect btnRect, const char *defaultSprite, const char *activeSprite);
 };
 
 #endif /* defined(__learn4__SneakyInputEX__) */

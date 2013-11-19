@@ -4,21 +4,26 @@ using namespace cocos2d;
 
 void SneakyButton::onEnterTransitionDidFinish()
 {
-	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 1, true);
+	_listener = EventListenerTouch::create(Touch::DispatchMode::ONE_BY_ONE);
+	_listener->setSwallowTouches(true);
+	_listener->onTouchBegan = [&](Touch *touch, Event *event) {return ccTouchBegan(touch, event);};
+	_listener->onTouchMoved = [&](Touch *touch, Event *event) {ccTouchMoved(touch, event);};
+	_listener->onTouchEnded = [&](Touch *touch, Event *event) {ccTouchEnded(touch, event);};
+	_listener->onTouchCancelled = [&](Touch *touch, Event *event) {ccTouchCancelled(touch, event);};
 }
 
 void SneakyButton::onExit()
 {
-	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	EventDispatcher::getInstance()->removeEventListener(_listener);
 }
 
-bool SneakyButton::initWithRect(CCRect rect)
+bool SneakyButton::initWithRect(Rect rect)
 {
 	bool pRet = false;
 	//if(CCSprite::init()){
 		
-		bounds = CCRectMake(0, 0, rect.size.width, rect.size.height);
-		center = CCPointMake(rect.size.width/2, rect.size.height/2);
+		bounds = Rect(0, 0, rect.size.width, rect.size.height);
+		center = Point(rect.size.width/2, rect.size.height/2);
 		status = 1; //defaults to enabled
 		active = false;
 		value = 0;
@@ -46,11 +51,11 @@ void SneakyButton::setRadius(float r)
 	radiusSq = r*r;
 }
 
-bool SneakyButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
+bool SneakyButton::ccTouchBegan(Touch *touch, Event *event)
 {
 	if (active) return false;
 	
-	CCPoint location = CCDirector::sharedDirector()->convertToGL(touch->getLocationInView());
+	Point location = Director::getInstance()->convertToGL(touch->getLocationInView());
 	location = this->convertToNodeSpace(location);
 		//Do a fast rect check before doing a circle hit check:
 	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
@@ -71,11 +76,11 @@ bool SneakyButton::ccTouchBegan(CCTouch *touch, CCEvent *event)
 return false;
 }
 
-void SneakyButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
+void SneakyButton::ccTouchMoved(Touch *touch, Event *event)
 {
 	if (!active) return;
 	
-	CCPoint location = CCDirector::sharedDirector()->convertToGL(touch->getLocationInView());
+	Point location = Director::getInstance()->convertToGL(touch->getLocationInView());
 	location = this->convertToNodeSpace(location);
 		//Do a fast rect check before doing a circle hit check:
 	if(location.x < -radius || location.x > radius || location.y < -radius || location.y > radius){
@@ -91,24 +96,14 @@ void SneakyButton::ccTouchMoved(CCTouch *touch, CCEvent *event)
 	}
 }
 
-void SneakyButton::ccTouchEnded(CCTouch *touch, CCEvent *event)
+void SneakyButton::ccTouchEnded(Touch *touch, Event *event)
 {
 	if (!active) return;
 	if (isHoldable) value = 0;
 	if (isHoldable||isToggleable) active = false;
 }
 
-void SneakyButton::ccTouchCancelled(CCTouch *touch, CCEvent *event)
+void SneakyButton::ccTouchCancelled(Touch *touch, Event *event)
 {
 	this->ccTouchEnded(touch, event);
-}
-
-void SneakyButton::touchDelegateRelease()
-{
-	this->release();
-}
-
-void SneakyButton::touchDelegateRetain()
-{
-	this->retain();
 }

@@ -12,15 +12,15 @@
 #include "SneakyButton.h"
 #include "SneakyButtonSkinnedBase.h"
 
-SneakyJoystickSkinnedBase *SneakyInputEx::joystickSkinnedBase(CCRect padRect, const char *backgroundSprite, const char *thumbSprite){
+SneakyJoystickSkinnedBase *SneakyInputEx::joystickSkinnedBase(Rect padRect, const char *backgroundSprite, const char *thumbSprite){
     SneakyJoystickSkinnedBase *joyStickBase = new SneakyJoystickSkinnedBase();
     if (joyStickBase) {
         joyStickBase->autorelease();
         joyStickBase->init();
         //操纵杆图片
-        joyStickBase->setBackgroundSprite(CCSprite::createWithSpriteFrameName(backgroundSprite));
+        joyStickBase->setBackgroundSprite(Sprite::createWithSpriteFrameName(backgroundSprite));
         //缩略图
-        joyStickBase->setThumbSprite(CCSprite::createWithSpriteFrameName(thumbSprite));
+        joyStickBase->setThumbSprite(Sprite::createWithSpriteFrameName(thumbSprite));
         joyStickBase->setPosition(48, 48);
         
         //操作杆
@@ -31,19 +31,18 @@ SneakyJoystickSkinnedBase *SneakyInputEx::joystickSkinnedBase(CCRect padRect, co
             joyStickBase->setJoystick(joyStick);
             return joyStickBase;
         }
-        return NULL;
     }
-    
+    return NULL;    
 }
-SneakyButtonSkinnedBase *SneakyInputEx::buttonSkinnedBase(CCRect btnRect, const char *defaultSprite, const char *activeSprite){
+SneakyButtonSkinnedBase *SneakyInputEx::buttonSkinnedBase(Rect btnRect, const char *defaultSprite, const char *activeSprite){
     //添加游戏按钮
     SneakyButtonSkinnedBase *buttonBase = new SneakyButtonSkinnedBase();
     if (buttonBase) {
         buttonBase->autorelease();
         buttonBase->init();
-        buttonBase->setDefaultSprite(CCSprite::createWithSpriteFrameName(defaultSprite));
-        buttonBase->setActivatedSprite(CCSprite::createWithSpriteFrameName(activeSprite));
-        buttonBase->setPressSprite(CCSprite::createWithSpriteFrameName(activeSprite));
+        buttonBase->setDefaultSprite(Sprite::createWithSpriteFrameName(defaultSprite));
+        buttonBase->setActivatedSprite(Sprite::createWithSpriteFrameName(activeSprite));
+        buttonBase->setPressSprite(Sprite::createWithSpriteFrameName(activeSprite));
     }
     
     

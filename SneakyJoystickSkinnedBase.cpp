@@ -25,7 +25,7 @@ SneakyJoystickSkinnedBase::~SneakyJoystickSkinnedBase()
 bool SneakyJoystickSkinnedBase::init()
 {
 	bool pRet = false;
-	if(CCLayer::init()){
+	if(Layer::init()){
 		this->backgroundSprite = NULL;
 
 		this->thumbSprite = NULL;
@@ -38,20 +38,20 @@ bool SneakyJoystickSkinnedBase::init()
 	return pRet;	
 }
 
-void SneakyJoystickSkinnedBase::updatePositions(CCTime delta)
+void SneakyJoystickSkinnedBase::updatePositions(float delta)
 {
 	if(joystick && thumbSprite)
 		thumbSprite->setPosition(joystick->getStickPosition());
 }
 
-void SneakyJoystickSkinnedBase::setContentSize(CCSize s)
+void SneakyJoystickSkinnedBase::setContentSize(Size s)
 {
-	CCLayer::setContentSize(s);
+	Layer::setContentSize(s);
 	backgroundSprite->setContentSize(s);
 	//joystick.joystickRadius = s.width/2;
 }
 
-void SneakyJoystickSkinnedBase::setBackgroundSprite(CCSprite *aSprite)
+void SneakyJoystickSkinnedBase::setBackgroundSprite(Sprite *aSprite)
 {
 	if(backgroundSprite){
 		if(backgroundSprite->getParent())
@@ -67,7 +67,7 @@ void SneakyJoystickSkinnedBase::setBackgroundSprite(CCSprite *aSprite)
 	}
 }
 
-void SneakyJoystickSkinnedBase::setThumbSprite(CCSprite *aSprite)
+void SneakyJoystickSkinnedBase::setThumbSprite(Sprite *aSprite)
 {
 	if(thumbSprite){
 		if(thumbSprite->getParent())
